@@ -74,7 +74,7 @@ class ElectricGuitar extends Guitar {
         this._withAmplifire = withAmplifire;
         this._sound = "wow";
         this.addGuitarEffect = (value) => {
-            this._sound = this._sound + ' ' + value;
+            this._sound = `${this._sound} ${value}`;
         }
     }
 
@@ -89,7 +89,6 @@ class ElectricGuitar extends Guitar {
     play() {
         console.log(this._sound);
     }
-    
 }
 
 var lesPaulType = new GuitarType(1, "Les Paul");

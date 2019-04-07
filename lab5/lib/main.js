@@ -120,7 +120,7 @@ function (_Guitar) {
     _this._sound = "wow";
 
     _this.addGuitarEffect = function (value) {
-      _this._sound = _this._sound + value;
+      _this._sound = "".concat(_this._sound, " ").concat(value);
     };
 
     return _this;
@@ -129,7 +129,7 @@ function (_Guitar) {
   _createClass(ElectricGuitar, [{
     key: "play",
     value: function play() {
-      console.log("wow wow wow" + this._brand);
+      console.log(this._sound);
     }
   }, {
     key: "withAmplifire",
@@ -148,5 +148,5 @@ var lesPaulType = new GuitarType(1, "Les Paul");
 var hollowBodyType = new GuitarType(2, "Hollow Body");
 var electric = new ElectricGuitar(1, "brown", "gretsch", lesPaulType, true);
 electric.play();
-electric.addGuitarEffect("KASIA");
+electric.addGuitarEffect("BUM");
 electric.play();

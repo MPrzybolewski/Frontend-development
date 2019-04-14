@@ -35,7 +35,7 @@ function () {
   _createClass(Guitar, [{
     key: "play",
     value: function play() {
-      console.log;
+      console.log(this._sound);
     }
   }, {
     key: "color",
@@ -127,11 +127,6 @@ function (_Guitar) {
   }
 
   _createClass(ElectricGuitar, [{
-    key: "play",
-    value: function play() {
-      console.log(this._sound);
-    }
-  }, {
     key: "withAmplifire",
     set: function set(value) {
       this._withAmplifire = value;

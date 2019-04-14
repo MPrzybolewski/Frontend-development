@@ -41,7 +41,7 @@ class Guitar {
     }
 
     play() {
-        console.log
+        console.log(this._sound)
     }
 }
 
@@ -84,10 +84,6 @@ class ElectricGuitar extends Guitar {
 
     get withAmplifire() {
         return this._withAmplifire;
-    }
-
-    play() {
-        console.log(this._sound);
     }
 }
 

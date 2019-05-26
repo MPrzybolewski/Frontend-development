@@ -56,9 +56,6 @@ ElectricGuitar.prototype.playWithWhammyBar = function () {
     console.log("wow wow wow");
 }
 
-var aElectricGuitar = new ElectricGuitar(1, "red", "Gretsch", lesPaulType, true, true);
-console.log(aElectricGuitar.hasAmplifire());
-
 var GUITAR_DB = (function () {
     let guitarDB = [];
 
@@ -109,9 +106,22 @@ var GUITAR_DB = (function () {
 
         updateGuitarColor: function(guitar, color) {
             guitarDB[guitarDB.indexOf(guitar)].color = color;
+        },
+
+        getByType: function(type){
+            
         }
     }
 })
+
+
+
+var aElectricGuitar = new ElectricGuitar(1, "red", "Gretsch", lesPaulType, true, true);
+var aElectricGuitar1 = new ElectricGuitar(2, "blue", "Fender", hollowBodyType, true, true);
+var aElectricGuitar2 = new ElectricGuitar(3, "red", "Gretsch", hollowBodyType, true, true);
+var aElectricGuitar3 = new ElectricGuitar(4, "white", "Les Paul", lesPaulType, true, true);
+
+console.log(aElectricGuitar.hasAmplifire());
 
 var dbInstance = GUITAR_DB()
 dbInstance.add(aElectricGuitar);

@@ -29,15 +29,15 @@ class Guitar {
     }
 
     get brand() {
-        return this.brand;
+        return this._brand;
     }
 
     get type() {
-        return this.type;
+        return this._type;
     }
 
     get withString() {
-        return this.withString;
+        return this._withString;
     }
 
     play() {

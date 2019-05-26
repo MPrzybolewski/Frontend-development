@@ -3,6 +3,7 @@ import Guitar from './domain/guitar';
 
 const express = require('express');
 const bodyParser = require('body-parser')
+var cors = require('cors')
 
 const app = express();
 const port = 4000;
@@ -10,6 +11,7 @@ const port = 4000;
 const guitarDB = GUITAR_DB();
 
 app.use(bodyParser.json());
+app.use(cors())
 
 app.get('/api/guitars/all', (req,res) => {
     res.send(guitarDB.getAll());

@@ -1,15 +1,22 @@
 
 import Guitar from '../domain/guitar';
+import GuitarType from '../domain/guitarType';
 
 var GUITAR_DB = function () {
     var guitarDB = [
-        new Guitar(1, "black", "gretsch", "test", true),
-        new Guitar(2, "white", "fender", "test", false),
-        new Guitar(3, "yelow", "gibson", "test", false)];
+        new Guitar(1, "black", "gretsch", "electric", true),
+        new Guitar(2, "white", "fender", "acoustic", false),
+        new Guitar(3, "yelow", "gibson", "eletric", false)];
 
-    function isGuitarCurrentlyExist(guitar)
+    var guitarTypeDB = [
+        new GuitarType(1, "electric"),
+        new GuitarType(2, "acoustic")
+    ]
+
+    function GetNewGuitarId()
     {
-        return guitarDB.some(x => x.id == guitar.id);
+        const guitarIds = guitarDB.map(x => x.id);
+        return (Math.max.apply(null, guitarIds) + 1);
     }
 
     function getGuitarIndexById(id) {
@@ -22,6 +29,17 @@ var GUITAR_DB = function () {
 
         return guitarIndex;
     }
+
+    function getGuitarTypeById(id) {
+        var guitarTypeString = '';
+        guitarTypeDB.forEach(guitarType => {
+            if(guitarType.id == id) {
+                guitarTypeString = guitarType.name;
+            }
+        });
+
+        return guitarTypeString;
+    }
     
     return {
         showGuitars: function() {
@@ -29,10 +47,8 @@ var GUITAR_DB = function () {
         },
 
         add: function(guitar) {
-            if (isGuitarCurrentlyExist(guitar)) {
-                return 'Guitar with this ID already exists!';
-            } 
-
+            guitar.id = GetNewGuitarId();
+            guitar.type = getGuitarTypeById(guitar.type)
             guitarDB.push(guitar);
             return guitar;
         },
@@ -65,8 +81,8 @@ var GUITAR_DB = function () {
             return guitarDB;
         },
 
-        getByType: function(type){
-            
+        getGuitarTypes: function() {
+            return guitarTypeDB;
         }
     }
 }

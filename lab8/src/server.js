@@ -13,6 +13,10 @@ const guitarDB = GUITAR_DB();
 app.use(bodyParser.json());
 app.use(cors())
 
+app.get('/api/guitarType/all', (req,res) => {
+    res.send(guitarDB.getGuitarTypes());
+});
+
 app.get('/api/guitars/all', (req,res) => {
     res.send(guitarDB.getAll());
 });

@@ -17,6 +17,9 @@ var port = 4000;
 var guitarDB = (0, _guitarsService["default"])();
 app.use(bodyParser.json());
 app.use(cors());
+app.get('/api/guitarType/all', function (req, res) {
+  res.send(guitarDB.getGuitarTypes());
+});
 app.get('/api/guitars/all', function (req, res) {
   res.send(guitarDB.getAll());
 });

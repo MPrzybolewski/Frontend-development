@@ -1,22 +1,6 @@
-class GuitarType {
+export default class GuitarType {
     constructor(id,name) {
-        this._id = id;
-        this._name = name;
-    }
-
-    set id(value) {
-        this._id = value;
-    }
-
-    set name(value) {
-        this._name = value;
-    }
-
-    get id() {
-        return this._id;
-    }
-
-    get name() {
-        return this._name;
+        this.id = id;
+        this.name = name;
     }
 }

@@ -24,16 +24,21 @@ class GuitarsContainer extends React.Component {
     this.setState({selectedGuitar: this.getNextGuitar()})
   }
 
+  
+
   render() {
     const guitars = this.props.guitars;
-    console.log(guitars)
     return (
       <div>
-        <GuitarsList guitars={guitars}/>
+        <GuitarsList guitars={guitars} onClick={this.showDetails}/>
         <hr/>
         { guitars.length > 0 && this.state.selectedGuitar !== null && (<GuitarDetails  model={this.state.selectedGuitar}/>) }
       </div>
       )
+  }
+
+  showDetails(guitar) {
+    this.setState({selectedGuitar: guitar});
   }
 
   getNextGuitar() {

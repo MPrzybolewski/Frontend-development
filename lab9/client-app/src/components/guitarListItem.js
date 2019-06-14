@@ -7,7 +7,12 @@ class GuitarListItem extends Component {
     }
 
     render() {
-      return <h1>{this.model.type} - {this.model.brand}</h1>;
+      return (
+        <div onClick={() => this.props.onClick(this.props.model)}>
+          <h1>{this.model.type} - {this.model.brand}</h1>
+        </div>
+      )
+      
     }
   }
 

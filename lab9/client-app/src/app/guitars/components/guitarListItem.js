@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../guitars.css'
 
 class GuitarListItem extends Component {
     constructor(props) {
@@ -8,13 +9,11 @@ class GuitarListItem extends Component {
 
     render() {
       return (
-        <div onClick={() => this.props.onClick(this.props.model)}>
+        <div className="Clickable" onClick={() => this.props.onClick(this.props.model)}>
           <h1>{this.model.type} - {this.model.brand}</h1>
         </div>
       )
-      
     }
   }
-
 
 export default GuitarListItem;

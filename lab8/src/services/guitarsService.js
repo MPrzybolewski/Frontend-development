@@ -73,8 +73,14 @@ var GUITAR_DB = function () {
             }
         },
 
-        updateGuitarColor: function(guitar, color) {
-            guitarDB[guitarDB.indexOf(guitar)].color = color;
+        update: function(guitar) {
+            var guitarIndex = getGuitarIndexById(guitar.id);
+            const guitarDb = guitarDB[guitarIndex];
+            guitarDb.color = guitar.color;
+            guitarDb.brand = guitar.brand;
+            guitarDb.withStrings = guitar.withStrings;
+            guitarDb.type = getGuitarTypeById(guitar.type)
+            return 'guitar updated'
         },
 
         getAll: function() {

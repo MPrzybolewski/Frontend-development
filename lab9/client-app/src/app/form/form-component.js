@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import Guitar from './domain/guitar';
-import GuitarsContainer from './containers/guitarsContainer'
+import Guitar from '../../domain/guitar';
 
 class FormComponent extends Component {
 
@@ -9,24 +8,13 @@ class FormComponent extends Component {
         super();
         this.state = {
             guitar: new Guitar('','','','',''),
-            guitars: [],
             guitarTypes: [],
             isFormValid: true
         }
     }
 
     componentDidMount() {
-        this.fetchGuitars();
         this.fetchGuitarTypes();
-    }
-
-    renderGuitars() {
-        return this.state.guitars.map( g => g.id );
-    }
-
-    async fetchGuitars() {
-        const values = await axios.get("http://localhost:4000/api/guitars/all").then(resp => resp.data);
-        this.setState({guitars: values})
     }
 
     async fetchGuitarTypes() {
@@ -37,17 +25,14 @@ class FormComponent extends Component {
     handleSubmit = async (event) => {
         event.preventDefault();
         if(this.isFormValid()) {
-            const newGuitar = await axios.post("http://localhost:4000/api/guitars", {guitar: this.state.guitar}).then(resp => resp.data)
-            this.setState(prevState => ({
-                guitars: [...prevState.guitars, newGuitar]
-            }))
+            await axios.post("http://localhost:4000/api/guitars", {guitar: this.state.guitar}).then(resp => resp.data)
+            this.props.onGuitarAdd();
             return;
         }
     }
 
     isFormValid() {
         if(this.state.guitar.color && this.state.guitar.brand && this.state.guitar.type !== -1 && this.state.guitar.withStrings !== ''){
-            console.log(this.state.guitar)
             this.setState({isFormValid: true});
             return true;
         }
@@ -66,7 +51,6 @@ class FormComponent extends Component {
         const errorMessageStyle = this.state.isFormValid ? {display: 'none', color: 'red'} : {color: 'red'};
         return (
             <div>
-                <GuitarsContainer guitars={this.state.guitars}/>
                 <form onSubmit={this.handleSubmit}>
                     <label> Entry Guitar Color:</label>
                     <input 
@@ -98,7 +82,6 @@ class FormComponent extends Component {
                     <button>Submit</button>
                     <p style={errorMessageStyle}>Form is not valid</p>
                 </form>
-                {this.renderGuitars()}
             </div>
         )
     }

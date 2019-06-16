@@ -37,5 +37,16 @@ app.delete('/api/guitars', (req,res) => {
     res.send(guitarDB.remove(id));
 });
 
+app.put('/api/guitars', (req,res) => {
+    const id = req.body.guitar.id;
+    const color = req.body.guitar.color;
+    const brand = req.body.guitar.brand;
+    const type = req.body.guitar.type;
+    const withStrings = req.body.guitar.withStrings;
+
+    const newGuitar = new Guitar(id,color,brand,type,withStrings);
+    res.send(guitarDB.update(newGuitar));
+})
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}`))
